@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>עולם הפשע מבפנים — קורס קרימינולוגיה</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0d0d0d;
+    color: #e8e0d0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    min-height: 100vh;
+    direction: rtl;
+  }
+  #home, #lesson { max-width: 780px; margin: 0 auto; padding: 40px 20px; }
+  #lesson { display: none; }
+
+  .header { text-align: center; margin-bottom: 48px; }
+  .eyebrow { font-size: 12px; letter-spacing: 5px; color: #888; margin-bottom: 16px; text-transform: uppercase; }
+  h1 { font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 900; line-height: 1.1; margin-bottom: 16px; color: #f5f0e8; }
+  h1 span { color: #c0392b; }
+  .header p { font-size: 17px; color: #aaa; max-width: 480px; margin: 0 auto 28px; line-height: 1.7; }
+  .tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 8px; }
+  .tag { background: #1a1a1a; border: 1px solid #333; border-radius: 20px; padding: 6px 14px; font-size: 13px; color: #aaa; }
+
+  .lessons-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .lesson-card {
+    background: #111; border: 1px solid #222; border-radius: 10px;
+    padding: 20px 22px; display: flex; align-items: center; gap: 18px;
+    cursor: pointer; transition: transform 0.2s; -webkit-tap-highlight-color: transparent;
+  }
+  .lesson-card:active { transform: scale(0.98); }
+  .lc-icon { font-size: 26px; flex-shrink: 0; }
+  .lc-info { flex: 1; min-width: 0; }
+  .lc-num { font-size: 11px; letter-spacing: 2px; font-weight: 700; margin-bottom: 4px; }
+  .lc-title { font-size: 16px; font-weight: 700; color: #f0ece4; margin-bottom: 3px; line-height: 1.3; }
+  .lc-sub { font-size: 13px; color: #777; }
+  .lc-arrow { color: #555; font-size: 20px; flex-shrink: 0; }
+
+  .tip-box { padding: 18px; background: #111; border: 1px solid #222; border-radius: 10px; text-align: center; font-size: 13px; color: #666; line-height: 1.8; }
+
+  /* LESSON */
+  .back-btn { background: none; border: none; color: #777; font-size: 15px; cursor: pointer; display: flex; align-items: center; gap: 6px; margin-bottom: 28px; font-family: inherit; padding: 0; -webkit-tap-highlight-color: transparent; }
+  .l-header { padding-right: 18px; margin-bottom: 28px; }
+  .l-eyebrow { font-size: 11px; letter-spacing: 3px; font-weight: 700; margin-bottom: 8px; }
+  h2 { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 900; margin-bottom: 8px; color: #f5f0e8; line-height: 1.2; }
+  .l-sub { font-size: 14px; color: #888; }
+
+  .tabs { display: flex; border-bottom: 1px solid #222; margin-bottom: 24px; overflow-x: auto; }
+  .tab-btn {
+    background: none; border: none; border-bottom: 2px solid transparent;
+    color: #666; font-size: 14px; padding: 10px 14px; cursor: pointer;
+    font-family: inherit; white-space: nowrap; margin-bottom: -1px; -webkit-tap-highlight-color: transparent;
+  }
+  .tab-btn.active { color: #f5f0e8; font-weight: 700; }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .desc { font-size: 15px; line-height: 1.9; color: #ccc; margin-bottom: 24px; }
+  .topics-box { background: #111; border: 1px solid #222; border-radius: 10px; padding: 20px; }
+  .box-title { font-size: 11px; letter-spacing: 2px; font-weight: 700; margin-bottom: 14px; }
+  .topic-item { display: flex; gap: 10px; margin-bottom: 10px; font-size: 14px; color: #ccc; line-height: 1.5; }
+
+  .vid-hint { font-size: 13px; color: #555; margin-bottom: 14px; }
+  .vid-card {
+    display: block; background: #111; border: 1px solid #222; border-radius: 10px;
+    padding: 16px 18px; text-decoration: none; color: inherit; margin-bottom: 12px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .vid-card:active { opacity: 0.7; }
+  .vid-inner { display: flex; align-items: center; gap: 14px; }
+  .vid-icon { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+  .vid-info { flex: 1; min-width: 0; }
+  .vid-title { font-size: 14px; font-weight: 600; color: #f0ece4; margin-bottom: 5px; line-height: 1.4; }
+  .vid-meta { display: flex; gap: 10px; font-size: 12px; color: #666; }
+  .vid-arrow { font-size: 18px; flex-shrink: 0; }
+  .sub-tip { margin-top: 8px; padding: 14px; background: #0f0f0f; border: 1px dashed #2a2a2a; border-radius: 8px; font-size: 13px; color: #555; line-height: 1.7; }
+
+  .case-box { border-radius: 12px; padding: 22px; margin-bottom: 20px; }
+  .case-label { font-size: 11px; letter-spacing: 2px; font-weight: 700; margin-bottom: 10px; }
+  .case-text { font-size: 15px; line-height: 1.9; color: #ccc; }
+  .questions-box { background: #111; border: 1px solid #222; border-radius: 10px; padding: 20px; }
+  .q-label { font-size: 12px; color: #666; margin-bottom: 12px; }
+  .q-item { font-size: 14px; color: #aaa; padding-right: 14px; border-right: 2px solid #333; line-height: 1.7; margin-bottom: 10px; }
+
+  .nav-btns { display: flex; justify-content: space-between; margin-top: 36px; padding-top: 20px; border-top: 1px solid #1e1e1e; gap: 12px; }
+  .nav-prev { background: #111; border: 1px solid #222; color: #aaa; border-radius: 8px; padding: 12px 18px; cursor: pointer; font-family: inherit; font-size: 14px; flex: 1; }
+  .nav-prev:disabled { color: #333; }
+  .nav-next { border: none; color: #fff; border-radius: 8px; padding: 12px 18px; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; flex: 1; }
+  .nav-next:disabled { opacity: 0.3; }
+</style>
+</head>
+<body>
+
+<div id="home">
+  <div class="header">
+    <div class="eyebrow">קורס חינמי · 8 שיעורים</div>
+    <h1>עולם הפשע<br><span>מבפנים</span></h1>
+    <p>קורס קרימינולוגיה לסקרנים — סיפורי פשע אמיתיים, חקירות מרתקות ופסיכולוגיה של עבריינים.</p>
+    <div class="tags">
+      <span class="tag">8 שיעורים</span>
+      <span class="tag">24+ סרטונים</span>
+      <span class="tag">ללא דרישות קדם</span>
+      <span class="tag">בחינם לחלוטין</span>
+    </div>
+  </div>
+  <div class="lessons-list" id="lessonsList"></div>
+  <div class="tip-box">
+    💡 הסרטונים בעיקר באנגלית — ניתן להפעיל כתוביות אוטומטיות בעברית ב-YouTube<br>
+    ⚙️ ← כתוביות ← תרגום אוטומטי ← עברית
+  </div>
+</div>
+
+<div id="lesson">
+  <button class="back-btn" onclick="showHome()">› חזרה לכל השיעורים</button>
+  <div class="l-header" id="lessonHeader"></div>
+  <div class="tabs" id="tabsBar"></div>
+  <div id="tabAbout" class="tab-panel active"></div>
+  <div id="tabVideos" class="tab-panel"></div>
+  <div id="tabCase" class="tab-panel"></div>
+  <div class="nav-btns">
+    <button class="nav-prev" id="prevBtn" onclick="navigate(-1)">‹ שיעור קודם</button>
+    <button class="nav-next" id="nextBtn" onclick="navigate(1)">שיעור הבא ›</button>
+  </div>
+</div>
+
+<script>
+var lessons = [
+  {
+    number:"שיעור 01", title:"מבוא לקרימינולוגיה — מה הופך אדם לפושע?",
+    subtitle:"הבנת הבסיס המדעי של חקר הפשע", color:"#c0392b", icon:"🔬",
+    description:"בשיעור הפתיחה נלמד מהי קרימינולוגיה, כיצד מדענים ופסיכולוגים מנסים להבין את ה'למה' מאחורי הפשע. נכיר מושגים בסיסיים: פרופיילינג, פסיכופתיה, ומה שמבדיל בין עבריין רגיל לרוצח סדרתי.",
+    keyTopics:["פרופיילינג פלילי","פסיכופתיה vs. סוציופתיה","תיאוריות על גנטיקה וסביבה","איך חושב חוקר FBI"],
+    videos:[
+      {title:"מה הופך אדם לרוצח סדרתי? (FBI Profiler מסביר)",url:"https://www.youtube.com/watch?v=6iz8qFmJybo",duration:"18 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"הפסיכולוגיה של הפושע — TED Talk",url:"https://www.youtube.com/watch?v=ZBn_2at2d9c",duration:"15 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"Psychopath vs Sociopath — ההבדל המדעי",url:"https://www.youtube.com/watch?v=Hf43bLqFwPo",duration:"10 דק׳",lang:"🇺🇸 אנגלית"}
+    ],
+    caseStudy:"מקרה: Ted Bundy — כיצד שוחרר פעמיים ממעצר תוך כדי שרצח?"
+  },
+  {
+    number:"שיעור 02", title:"טד באנדי — האדם שכולם אהבו",
+    subtitle:"הרוצח הסדרתי שהיה גם סטודנט למשפטים", color:"#8e44ad", icon:"🎭",
+    description:"טד באנדי רצח לפחות 30 נשים בשנות ה-70. הוא היה נאה, כריזמטי, ולמד משפטים. הוא ייצג את עצמו בבית המשפט, ברח מהכלא פעמיים, ונשא לאישה תוך כדי משפטו.",
+    keyTopics:["שימוש בקסם אישי ככלי לפשע","שני בריחות מהכלא","שיטות פרופיילינג שהובילו לתפיסתו","הרצאתו בפני FBI"],
+    videos:[
+      {title:"Conversations with a Killer: The Ted Bundy Tapes",url:"https://www.youtube.com/watch?v=_9JTFqGKBCU",duration:"2 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"Ted Bundy — The Full Story (דוקומנטרי)",url:"https://www.youtube.com/watch?v=Kzga_-Q32Xo",duration:"45 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"How Ted Bundy Was Finally Caught",url:"https://www.youtube.com/watch?v=H3xMWBxuP-Y",duration:"22 דק׳",lang:"🇺🇸 אנגלית"}
+    ],
+    caseStudy:"מקרה: השן כראיה — כיצד טביעת שן אחת הובילה להרשעתו?"
+  },
+  {
+    number:"שיעור 03", title:"ג׳פרי דאהמר — המפלצת ממילווקי",
+    subtitle:"רוצח, קניבל ושואל מוחות בדירתו", color:"#16a085", icon:"🧟",
+    description:"דאהמר רצח 17 גברים ונערים בין 1978 ל-1991. שמר חלקי גוף במקרר. שכן התלוננה למשטרה — ונשלחה הביתה. שיעור על כשלים במשטרה ועל מה שמסתתר מאחורי דלתות סגורות.",
+    keyTopics:["כשלים משטרתיים שאיפשרו המשך הפשעים","ראיות שנאספו לאחר המעצר","ניתוח פסיכיאטרי בבית משפט","השפעת הילדות על התפתחות פושע"],
+    videos:[
+      {title:"Jeffrey Dahmer: Stone Phillips Interview (1994)",url:"https://www.youtube.com/watch?v=O36L4s-jaQA",duration:"30 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"Dahmer Documentary — The Full Case",url:"https://www.youtube.com/watch?v=kWDjz6_h1cM",duration:"50 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"What the Police Missed — ניתוח הכשל החקירתי",url:"https://www.youtube.com/watch?v=u9-YzHnvAEo",duration:"18 דק׳",lang:"🇺🇸 אנגלית"}
+    ],
+    caseStudy:"מקרה: השכנה שצעקה — למה לא האמינה המשטרה לאישה שניסתה להציל נער?"
+  },
+  {
+    number:"שיעור 04", title:"פרשת O.J. סימפסון — כסף, גזע ומשפט",
+    subtitle:"המשפט שחצה את אמריקה לשניים", color:"#e67e22", icon:"⚖️",
+    description:"ב-1994 נמצאה ניקול בראון סימפסון מרוצחת. בעלה לשעבר זוכה למרות ראיות DNA חד-משמעיות. פרשה זו שינתה את עולם המשפט הפלילי, ה-DNA הפורנזי, ודרכי ייצוג בתקשורת.",
+    keyTopics:["ראיות DNA ואופן הצגתן","תפקיד הגזע במערכת המשפט","טעויות החוקרים שפגעו בתיק","עורכי הדין של משפט המאה"],
+    videos:[
+      {title:"OJ Simpson: The Trial of the Century",url:"https://www.youtube.com/watch?v=HOVpIo5HvkY",duration:"55 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"The Evidence Against OJ — ניתוח ה-DNA",url:"https://www.youtube.com/watch?v=P-9GBqfh5uY",duration:"20 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"How Lawyers Shaped the OJ Verdict",url:"https://www.youtube.com/watch?v=RbMgzgAVPKM",duration:"14 דק׳",lang:"🇺🇸 אנגלית"}
+    ],
+    caseStudy:"מקרה: הכפפה שלא הייתה מתאימה — כיצד משפט אחד שינה את תוצאת המשפט?"
+  },
+  {
+    number:"שיעור 05", title:"ה-BTK Killer — 30 שנות רדת ונעלם",
+    subtitle:"מנהל קהילה, נשוי, אב — ורוצח סדרתי", color:"#2980b9", icon:"🔍",
+    description:"Dennis Rader רצח 10 אנשים בקנזס בין 1974 ל-1991. לאחר 13 שנות שקט, חזר לשלוח מכתבים למשטרה — וכך נתפס. הוא חי חיים כפולים לחלוטין.",
+    keyTopics:["חיים כפולים — כיצד הסתיר?","חזרת BTK לאחר 13 שנה","השימוש בדיסקט שחשף אותו","עקרון תחת האף בחקירות"],
+    videos:[
+      {title:"BTK Killer: The Full Story — Dennis Rader",url:"https://www.youtube.com/watch?v=xN6pEPxR4OA",duration:"48 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"How a Floppy Disk Caught BTK",url:"https://www.youtube.com/watch?v=AFVS6nPWKqU",duration:"15 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"BTK in His Own Words — ראיון לאחר המעצר",url:"https://www.youtube.com/watch?v=cO_2fN4G6yY",duration:"25 דק׳",lang:"🇺🇸 אנגלית"}
+    ],
+    caseStudy:"מקרה: המטאדאטה שהרגה אותו — קובץ Word שנשלח למשטרה הכיל את שמו האמיתי."
+  },
+  {
+    number:"שיעור 06", title:"הפשע הלבן — הרמאים בחליפה",
+    subtitle:"הונאות מיליארדים שאיש לא ראה מגיעות", color:"#27ae60", icon:"💼",
+    description:"ברנרד מאדוף גנב 65 מיליארד דולר ב-20 שנה. אליזבת הולמס הקימה אימפריה רפואית מזויפת. אנרון הפילה את עצמה ואת עובדיה. פשעי צווארון לבן הם לעיתים המסוכנים ביותר.",
+    keyTopics:["סכמת פונזי — איך עובדת?","איך Theranos רימתה את עמק הסיליקון","חקירת SEC ו-FBI","מדוע פושעים לבנים נדונים לפחות?"],
+    videos:[
+      {title:"Bernie Madoff: The Wizard of Lies",url:"https://www.youtube.com/watch?v=0VgdFSomVJA",duration:"35 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"The Inventor: Out for Blood — Elizabeth Holmes",url:"https://www.youtube.com/watch?v=yhBbCpSGJSw",duration:"3 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"Enron: The Smartest Guys in the Room",url:"https://www.youtube.com/watch?v=OQm1puMelkk",duration:"1:50 שע׳",lang:"🇺🇸 אנגלית"}
+    ],
+    caseStudy:"מקרה: מאדוף ה-20 שנה — מדוע ה-SEC בדק אותו חמש פעמים ולא מצא דבר?"
+  },
+  {
+    number:"שיעור 07", title:"פשעי סייבר — הפשע של המאה ה-21",
+    subtitle:"הפורץ שמעולם לא יצא מהבית", color:"#1abc9c", icon:"💻",
+    description:"פשעי רשת הם הצמיחה המהירה ביותר בעולם הפשע. מניפולציות בבחירות, גניבות זהות, Dark Web וכופרה. נלמד כיצד חוקרים מאתרים פושעים דיגיטליים.",
+    keyTopics:["Dark Web — מה קורה שם?","כיצד FBI עוקב אחרי כתובות IP","מקרה Silk Road","פשעי זהות — כיצד לזהות?"],
+    videos:[
+      {title:"Silk Road: The Untold Story",url:"https://www.youtube.com/watch?v=Vu4RZVP1Hgw",duration:"40 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"How the FBI Catches Hackers",url:"https://www.youtube.com/watch?v=m02k-xRSHBo",duration:"22 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"Dark Web Explained",url:"https://www.youtube.com/watch?v=oiR2mvHMSnk",duration:"16 דק׳",lang:"🇺🇸 אנגלית"}
+    ],
+    caseStudy:"מקרה: Ross Ulbricht — איך מייסד Silk Road נתפס בספרייה הציבורית?"
+  },
+  {
+    number:"שיעור 08", title:"פרשיות מישראל — פשע קרוב לבית",
+    subtitle:"מקרי רצח ופשע מהאדמה שלנו", color:"#e74c3c", icon:"🇮🇱",
+    description:"ישראל אינה חסינה. פרשת רצח דנה בנט, פרשות הונאת נדל״ן ענקיות, ותיקים של אלימות בין-פמילית. שיעור על מה שקורה בחדרי חקירה ישראלים.",
+    keyTopics:["מערכת המשפט הפלילית בישראל","חקירות של מחלקת הרצח","פרשות מפורסמות מהעשורים האחרונים","תפקיד התקשורת בחשיפת פשע"],
+    videos:[
+      {title:"פרשת דנה בנט — דוקומנטרי חקירה ישראלי",url:"https://www.youtube.com/watch?v=mwVUr8yQ-xg",duration:"50 דק׳",lang:"🇮🇱 עברית"},
+      {title:"10 פשעים מטלטלים מישראל",url:"https://www.youtube.com/watch?v=0p7UCOJEKyw",duration:"30 דק׳",lang:"🇺🇸 אנגלית"},
+      {title:"חקירת רצח — ראיון עם קצין מחלקת רצח",url:"https://www.youtube.com/watch?v=ZBn_2at2d9c",duration:"25 דק׳",lang:"🇮🇱 עברית"}
+    ],
+    caseStudy:"מקרה: איך נסגרים תיקים קרים — חקירות DNA שפתרו פשעים לאחר 20 שנה."
+  }
+];
+
+var currentLesson = 0;
+
+function buildHome() {
+  var list = document.getElementById('lessonsList');
+  var html = '';
+  for (var i = 0; i < lessons.length; i++) {
+    var l = lessons[i];
+    html += '<div class="lesson-card" onclick="showLesson(' + i + ')" style="border-right:3px solid ' + l.color + '">' +
+      '<div class="lc-icon">' + l.icon + '</div>' +
+      '<div class="lc-info">' +
+        '<div class="lc-num" style="color:' + l.color + '">' + l.number + '</div>' +
+        '<div class="lc-title">' + l.title + '</div>' +
+        '<div class="lc-sub">' + l.subtitle + '</div>' +
+      '</div>' +
+      '<div class="lc-arrow">‹</div>' +
+    '</div>';
+  }
+  list.innerHTML = html;
+}
+
+function showLesson(i) {
+  currentLesson = i;
+  var l = lessons[i];
+  document.getElementById('home').style.display = 'none';
+  document.getElementById('lesson').style.display = 'block';
+  window.scrollTo(0, 0);
+
+  var header = document.getElementById('lessonHeader');
+  header.style.borderRight = '4px solid ' + l.color;
+  header.innerHTML = '<div class="l-eyebrow" style="color:' + l.color + '">' + l.number + ' · ' + l.icon + '</div>' +
+    '<h2>' + l.title + '</h2>' +
+    '<div class="l-sub">' + l.subtitle + '</div>';
+
+  var tabsBar = document.getElementById('tabsBar');
+  tabsBar.innerHTML =
+    '<button class="tab-btn active" id="tabBtnAbout" style="border-bottom-color:' + l.color + '" onclick="switchTab(\'About\')">' + 'על השיעור' + '</button>' +
+    '<button class="tab-btn" id="tabBtnVideos" onclick="switchTab(\'Videos\')">' + 'סרטונים (' + l.videos.length + ')' + '</button>' +
+    '<button class="tab-btn" id="tabBtnCase" onclick="switchTab(\'Case\')">' + 'מקרה מבחן' + '</button>';
+
+  var topicsHtml = '';
+  for (var t = 0; t < l.keyTopics.length; t++) {
+    topicsHtml += '<div class="topic-item"><span style="color:' + l.color + ';flex-shrink:0">▸</span><span>' + l.keyTopics[t] + '</span></div>';
+  }
+  document.getElementById('tabAbout').innerHTML =
+    '<p class="desc">' + l.description + '</p>' +
+    '<div class="topics-box">' +
+      '<div class="box-title" style="color:' + l.color + '">נושאים מרכזיים</div>' +
+      topicsHtml +
+    '</div>';
+
+  var vidsHtml = '<div class="vid-hint">💡 לחצו על הכותרת לצפייה ב-YouTube</div>';
+  for (var v = 0; v < l.videos.length; v++) {
+    var vid = l.videos[v];
+    vidsHtml += '<a class="vid-card" href="' + vid.url + '" target="_blank">' +
+      '<div class="vid-inner">' +
+        '<div class="vid-icon" style="background:' + l.color + '22;border:1px solid ' + l.color + '44">▶</div>' +
+        '<div class="vid-info">' +
+          '<div class="vid-title">' + vid.title + '</div>' +
+          '<div class="vid-meta"><span>⏱ ' + vid.duration + '</span><span>' + vid.lang + '</span></div>' +
+        '</div>' +
+        '<div class="vid-arrow" style="color:' + l.color + '">↗</div>' +
+      '</div>' +
+    '</a>';
+  }
+  vidsHtml += '<div class="sub-tip">🌐 כתוביות עברית ב-YouTube: ⚙️ ← Subtitles/CC ← Auto-translate ← Hebrew</div>';
+  document.getElementById('tabVideos').innerHTML = vidsHtml;
+
+  document.getElementById('tabCase').innerHTML =
+    '<div class="case-box" style="background:' + l.color + '11;border:1px solid ' + l.color + '33">' +
+      '<div class="case-label" style="color:' + l.color + '">מקרה מבחן לשיעור זה</div>' +
+      '<div class="case-text">' + l.caseStudy + '</div>' +
+    '</div>' +
+    '<div class="questions-box">' +
+      '<div class="q-label">שאלות לחשיבה</div>' +
+      '<div class="q-item">מה היו הגורמים שאיפשרו את הפשע?</div>' +
+      '<div class="q-item">היכן נכשלה מערכת האכיפה?</div>' +
+      '<div class="q-item">מה השתנה לאחר פרשה זו?</div>' +
+    '</div>';
+
+  switchTab('About');
+
+  document.getElementById('prevBtn').disabled = (i === 0);
+  document.getElementById('nextBtn').style.background = l.color;
+  document.getElementById('nextBtn').disabled = (i === lessons.length - 1);
+}
+
+function switchTab(name) {
+  var tabs = ['About', 'Videos', 'Case'];
+  var color = lessons[currentLesson].color;
+  for (var i = 0; i < tabs.length; i++) {
+    var panel = document.getElementById('tab' + tabs[i]);
+    var btn = document.getElementById('tabBtn' + tabs[i]);
+    if (tabs[i] === name) {
+      panel.classList.add('active');
+      btn.classList.add('active');
+      btn.style.borderBottomColor = color;
+    } else {
+      panel.classList.remove('active');
+      btn.classList.remove('active');
+      btn.style.borderBottomColor = 'transparent';
+    }
+  }
+}
+
+function showHome() {
+  document.getElementById('lesson').style.display = 'none';
+  document.getElementById('home').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function navigate(dir) {
+  var next = currentLesson + dir;
+  if (next >= 0 && next < lessons.length) showLesson(next);
+}
+
+buildHome();
+</script>
+</body>
+</html>

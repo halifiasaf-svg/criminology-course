@@ -78,6 +78,13 @@
   .vid-arrow { font-size: 18px; flex-shrink: 0; }
   .sub-tip { margin-top: 8px; padding: 14px; background: #0f0f0f; border: 1px dashed #2a2a2a; border-radius: 8px; font-size: 13px; color: #555; line-height: 1.7; }
 
+  .vid-embed-card { background: #111; border: 1px solid #222; border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+  .vid-embed-header { padding: 14px 18px 10px; }
+  .vid-embed-title { font-size: 15px; font-weight: 600; color: #f0ece4; margin-bottom: 5px; line-height: 1.4; }
+  .vid-embed-meta { display: flex; gap: 10px; font-size: 12px; color: #666; }
+  .vid-iframe { width: 100%; aspect-ratio: 16/9; border: none; display: block; }
+  .vid-summary { padding: 14px 18px; font-size: 14px; color: #999; line-height: 1.8; border-top: 1px solid #1e1e1e; background: #0a0a0a; }
+
   .case-box { border-radius: 12px; padding: 22px; margin-bottom: 20px; }
   .case-label { font-size: 11px; letter-spacing: 2px; font-weight: 700; margin-bottom: 10px; }
   .case-text { font-size: 15px; line-height: 1.9; color: #ccc; }
@@ -134,9 +141,9 @@ var lessons = [
     description:"בשיעור הפתיחה נלמד מהי קרימינולוגיה, כיצד מדענים ופסיכולוגים מנסים להבין את ה'למה' מאחורי הפשע. נכיר מושגים בסיסיים: פרופיילינג, פסיכופתיה, ומה שמבדיל בין עבריין רגיל לרוצח סדרתי.",
     keyTopics:["פרופיילינג פלילי","פסיכופתיה vs. סוציופתיה","תיאוריות על גנטיקה וסביבה","איך חושב חוקר FBI"],
     videos:[
-      {title:"מה הופך אדם לרוצח סדרתי? (FBI Profiler מסביר)",url:"https://www.youtube.com/watch?v=LHqbfJ3tq4Y",duration:"18 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"הפסיכולוגיה של הפושע — TED Talk",url:"https://www.youtube.com/watch?v=BRZMOVE153U",duration:"15 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"Psychopath vs Sociopath — ההבדל המדעי",url:"https://www.youtube.com/watch?v=UAjAMYaiWnI",duration:"10 דק׳",lang:"🇺🇸 אנגלית"}
+      {title:"מה הופך אדם לרוצח סדרתי? (FBI Profiler מסביר)",url:"https://www.youtube.com/watch?v=LHqbfJ3tq4Y",duration:"18 דק׳",lang:"🇺🇸 אנגלית",summary:"סוכן FBI לשעבר מסביר כיצד מומחי פרופיילינג בונים דיוקן פסיכולוגי של פושע. חושף את השיטות שמשמשות את ה-FBI לזיהוי וסיווג עבריינים מסוכנים — מה בא קודם: המחשבה או המעשה?"},
+      {title:"הפסיכולוגיה של הפושע — TED Talk",url:"https://www.youtube.com/watch?v=BRZMOVE153U",duration:"15 דק׳",lang:"🇺🇸 אנגלית",summary:"הרצאת TED על הרגעים הספציפיים שדוחפים אנשים לפשוע. הממצא המפתיע: לא מדובר רק באנשים ״רעים״ — אלא בנסיבות ובהזדמנות שאיפשרו את המעשה."},
+      {title:"Psychopath vs Sociopath — ההבדל המדעי",url:"https://www.youtube.com/watch?v=UAjAMYaiWnI",duration:"10 דק׳",lang:"🇺🇸 אנגלית",summary:"הבדל מדעי בין פסיכופת לסוציופת — שני סוגי אישיות שמבולבלים לעיתים קרובות. מסביר כיצד הם שונים ברגש, בתכנון ובדרכי הפעולה שלהם."}
     ],
     caseStudy:"מקרה: Ted Bundy — כיצד שוחרר פעמיים ממעצר תוך כדי שרצח?"
   },
@@ -146,9 +153,9 @@ var lessons = [
     description:"טד באנדי רצח לפחות 30 נשים בשנות ה-70. הוא היה נאה, כריזמטי, ולמד משפטים. הוא ייצג את עצמו בבית המשפט, ברח מהכלא פעמיים, ונשא לאישה תוך כדי משפטו.",
     keyTopics:["שימוש בקסם אישי ככלי לפשע","שני בריחות מהכלא","שיטות פרופיילינג שהובילו לתפיסתו","הרצאתו בפני FBI"],
     videos:[
-      {title:"Conversations with a Killer: The Ted Bundy Tapes",url:"https://www.youtube.com/watch?v=suzrmWUkfrI",duration:"2 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"Ted Bundy — The Full Story (דוקומנטרי)",url:"https://www.youtube.com/watch?v=kUIy-vQ0BY4",duration:"45 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"How Ted Bundy Was Finally Caught",url:"https://www.youtube.com/watch?v=JijLmw4BzTo",duration:"22 דק׳",lang:"🇺🇸 אנגלית"}
+      {title:"Conversations with a Killer: The Ted Bundy Tapes",url:"https://www.youtube.com/watch?v=suzrmWUkfrI",duration:"2 דק׳",lang:"🇺🇸 אנגלית",summary:"הקלטות מוות של טד באנדי — שיחות שנוהלו בזמן שישב בתא המוות. באנדי מדבר בגלוי על פשעיו ומנסה להסביר את עצמו. מסמך היסטורי מטריד."},
+      {title:"Ted Bundy — The Full Story (דוקומנטרי)",url:"https://www.youtube.com/watch?v=kUIy-vQ0BY4",duration:"45 דק׳",lang:"🇺🇸 אנגלית",summary:"דוקומנטרי מלא על חייו ופשעיו של טד באנדי — מהרצח הראשון ועד שני בריחותיו מהכלא. מתאר כיצד השתמש בקסמו האישי כדי להסתיר אופי של רוצח קר-דם."},
+      {title:"How Ted Bundy Was Finally Caught",url:"https://www.youtube.com/watch?v=JijLmw4BzTo",duration:"22 דק׳",lang:"🇺🇸 אנגלית",summary:"כיצד נתפס לבסוף טד באנדי? הסרטון עוקב אחרי ציר הזמן של החקירה, כולל הטעויות שאיפשרו לו להמשיך לרצוח, ואיך עצירת תנועה אקראית חשפה אותו."}
     ],
     caseStudy:"מקרה: השן כראיה — כיצד טביעת שן אחת הובילה להרשעתו?"
   },
@@ -158,9 +165,9 @@ var lessons = [
     description:"דאהמר רצח 17 גברים ונערים בין 1978 ל-1991. שמר חלקי גוף במקרר. שכן התלוננה למשטרה — ונשלחה הביתה. שיעור על כשלים במשטרה ועל מה שמסתתר מאחורי דלתות סגורות.",
     keyTopics:["כשלים משטרתיים שאיפשרו המשך הפשעים","ראיות שנאספו לאחר המעצר","ניתוח פסיכיאטרי בבית משפט","השפעת הילדות על התפתחות פושע"],
     videos:[
-      {title:"Jeffrey Dahmer: Stone Phillips Interview (1994)",url:"https://www.youtube.com/watch?v=6tSxuyM93Js",duration:"30 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"Dahmer Documentary — The Full Case",url:"https://www.youtube.com/watch?v=uaTVvm1L014",duration:"50 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"What the Police Missed — ניתוח הכשל החקירתי",url:"https://www.youtube.com/watch?v=APqq1Pvvqbs",duration:"18 דק׳",lang:"🇺🇸 אנגלית"}
+      {title:"Jeffrey Dahmer: Stone Phillips Interview (1994)",url:"https://www.youtube.com/watch?v=6tSxuyM93Js",duration:"30 דק׳",lang:"🇺🇸 אנגלית",summary:"ראיון נדיר ומטריד שערך עיתונאי NBC עם ג׳פרי דאהמר ב-1994, שנתיים אחרי מעצרו. דאהמר מדבר בקור רוח על פשעיו ומנסה להסביר מה הניע אותו לכל אלה."},
+      {title:"Dahmer Documentary — The Full Case",url:"https://www.youtube.com/watch?v=uaTVvm1L014",duration:"50 דק׳",lang:"🇺🇸 אנגלית",summary:"דוקומנטרי מ-2022 המבוסס על הקלטות עם דאהמר. 17 קורבנות, שכנה שניסתה להזהיר את המשטרה ואיש לא האמין לה, ושנים של כשלים שאיפשרו את הטבח."},
+      {title:"What the Police Missed — ניתוח הכשל החקירתי",url:"https://www.youtube.com/watch?v=APqq1Pvvqbs",duration:"18 דק׳",lang:"🇺🇸 אנגלית",summary:"ראיון מורחב עם דאהמר הבוחן את כשלי מערכת האכיפה — כמה פשעים היו נמנעים? פרשה שגרמה לרפורמה בנהלי המשטרה בכל ארה״ב."}
     ],
     caseStudy:"מקרה: השכנה שצעקה — למה לא האמינה המשטרה לאישה שניסתה להציל נער?"
   },
@@ -170,9 +177,9 @@ var lessons = [
     description:"ב-1994 נמצאה ניקול בראון סימפסון מרוצחת. בעלה לשעבר זוכה למרות ראיות DNA חד-משמעיות. פרשה זו שינתה את עולם המשפט הפלילי, ה-DNA הפורנזי, ודרכי ייצוג בתקשורת.",
     keyTopics:["ראיות DNA ואופן הצגתן","תפקיד הגזע במערכת המשפט","טעויות החוקרים שפגעו בתיק","עורכי הדין של משפט המאה"],
     videos:[
-      {title:"OJ Simpson: The Trial of the Century",url:"https://www.youtube.com/watch?v=1W3BLcQGQQc",duration:"55 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"The Evidence Against OJ — ניתוח ה-DNA",url:"https://www.youtube.com/watch?v=Q2mJTuITptw",duration:"20 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"How Lawyers Shaped the OJ Verdict",url:"https://www.youtube.com/watch?v=bZ0qo5M7G6c",duration:"14 דק׳",lang:"🇺🇸 אנגלית"}
+      {title:"OJ Simpson: The Trial of the Century",url:"https://www.youtube.com/watch?v=1W3BLcQGQQc",duration:"55 דק׳",lang:"🇺🇸 אנגלית",summary:"דוקומנטרי PBS Frontline על משפט O.J. סימפסון ומה שחשף על מערכת המשפט האמריקאית, גזע ואמון הציבור. נחשב לאחד הניתוחים המעמיקים ביותר על הפרשה."},
+      {title:"The Evidence Against OJ — ניתוח ה-DNA",url:"https://www.youtube.com/watch?v=Q2mJTuITptw",duration:"20 דק׳",lang:"🇺🇸 אנגלית",summary:"סקירה מלאה של כל הראיות שהוצגו בתיק — ראיות DNA, כפפת הדם וטעויות החוקרים. מסביר כיצד ראיות חזקות לא הספיקו להרשעה בגלל כשלים של המשטרה."},
+      {title:"How Lawyers Shaped the OJ Verdict",url:"https://www.youtube.com/watch?v=bZ0qo5M7G6c",duration:"14 דק׳",lang:"🇺🇸 אנגלית",summary:"ניתוח האסטרטגיה המשפטית של שני הצדדים — כיצד עורכי דין מנוסים עיצבו את תפיסת חבר המושבעים. משפט שבו הסיפור שסיפרו עורכי הדין ניצח את הראיות עצמן."}
     ],
     caseStudy:"מקרה: הכפפה שלא הייתה מתאימה — כיצד משפט אחד שינה את תוצאת המשפט?"
   },
@@ -182,9 +189,9 @@ var lessons = [
     description:"Dennis Rader רצח 10 אנשים בקנזס בין 1974 ל-1991. לאחר 13 שנות שקט, חזר לשלוח מכתבים למשטרה — וכך נתפס. הוא חי חיים כפולים לחלוטין.",
     keyTopics:["חיים כפולים — כיצד הסתיר?","חזרת BTK לאחר 13 שנה","השימוש בדיסקט שחשף אותו","עקרון תחת האף בחקירות"],
     videos:[
-      {title:"BTK Killer: The Full Story — Dennis Rader",url:"https://www.youtube.com/watch?v=GofV2UbdYmo",duration:"48 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"How a Floppy Disk Caught BTK",url:"https://www.youtube.com/watch?v=HlzlggRzdfA",duration:"15 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"BTK in His Own Words — ראיון לאחר המעצר",url:"https://www.youtube.com/watch?v=wX5gb48oMLM",duration:"25 דק׳",lang:"🇺🇸 אנגלית"}
+      {title:"BTK Killer: The Full Story — Dennis Rader",url:"https://www.youtube.com/watch?v=GofV2UbdYmo",duration:"48 דק׳",lang:"🇺🇸 אנגלית",summary:"דוקומנטרי מלא על חייו הכפולים של Dennis Rader — שמש בית כנסת, מנהל קהילה ואב — ורוצח סדרתי. 30 שנה חי לצד שכניו מבלי שאיש יחשוד בו."},
+      {title:"How a Floppy Disk Caught BTK",url:"https://www.youtube.com/watch?v=HlzlggRzdfA",duration:"15 דק׳",lang:"🇺🇸 אנגלית",summary:"כיצד דיסקט פלופי ישן חשף את ה-BTK Killer אחרי 13 שנות שקט? סרטון מרתק על שגיאה דיגיטלית אחת שהרסה 30 שנות הסתרה — מטאדאטה ששכח למחוק."},
+      {title:"BTK in His Own Words — ראיון לאחר המעצר",url:"https://www.youtube.com/watch?v=wX5gb48oMLM",duration:"25 דק׳",lang:"🇺🇸 אנגלית",summary:"הפרק הראשון מסדרת תחקיר על ה-BTK — חשיפת חייו הכפולים, ההקלטות שהשאיר למשטרה בכוונה, ואיך ניהל חיים נורמליים לגמרי לאורך עשרות שנים."}
     ],
     caseStudy:"מקרה: המטאדאטה שהרגה אותו — קובץ Word שנשלח למשטרה הכיל את שמו האמיתי."
   },
@@ -194,9 +201,9 @@ var lessons = [
     description:"ברנרד מאדוף גנב 65 מיליארד דולר ב-20 שנה. אליזבת הולמס הקימה אימפריה רפואית מזויפת. אנרון הפילה את עצמה ואת עובדיה. פשעי צווארון לבן הם לעיתים המסוכנים ביותר.",
     keyTopics:["סכמת פונזי — איך עובדת?","איך Theranos רימתה את עמק הסיליקון","חקירת SEC ו-FBI","מדוע פושעים לבנים נדונים לפחות?"],
     videos:[
-      {title:"Bernie Madoff: The Wizard of Lies",url:"https://www.youtube.com/watch?v=nYMmRA6naXs",duration:"35 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"The Inventor: Out for Blood — Elizabeth Holmes",url:"https://www.youtube.com/watch?v=to2GSibbrv0",duration:"3 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"Enron: The Smartest Guys in the Room",url:"https://www.youtube.com/watch?v=sd60lhQT6TA",duration:"1:50 שע׳",lang:"🇺🇸 אנגלית"}
+      {title:"Bernie Madoff: The Wizard of Lies",url:"https://www.youtube.com/watch?v=nYMmRA6naXs",duration:"35 דק׳",lang:"🇺🇸 אנגלית",summary:"הסיפור המלא של ברני מאדוף — 65 מיליארד דולר שנגנבו מ-37,000 משקיעים לאורך 20 שנה. כיצד עבדה תכנית הפונזי, כיצד נחשפה, ואיך ה-SEC פספס אותו חמש פעמים."},
+      {title:"The Inventor: Out for Blood — Elizabeth Holmes",url:"https://www.youtube.com/watch?v=to2GSibbrv0",duration:"3 דק׳",lang:"🇺🇸 אנגלית",summary:"כיצד אליזבת הולמס בנתה אימפריה רפואית שווה 9 מיליארד דולר על בדיקות דם שמעולם לא עבדו? הדוקומנטרי חושף את השקר הגדול ביותר בהיסטוריית עמק הסיליקון."},
+      {title:"Enron: The Smartest Guys in the Room",url:"https://www.youtube.com/watch?v=sd60lhQT6TA",duration:"1:50 שע׳",lang:"🇺🇸 אנגלית",summary:"הדוקומנטרי הקלאסי על קריסת אנרון — חברת האנרגיה שהפילה 20,000 עובדים ושינתה את חוקי ניירות הערך בארה״ב. ניהול כושל, שחיתות וגאווה שהרסה הכל."}
     ],
     caseStudy:"מקרה: מאדוף ה-20 שנה — מדוע ה-SEC בדק אותו חמש פעמים ולא מצא דבר?"
   },
@@ -206,9 +213,9 @@ var lessons = [
     description:"פשעי רשת הם הצמיחה המהירה ביותר בעולם הפשע. מניפולציות בבחירות, גניבות זהות, Dark Web וכופרה. נלמד כיצד חוקרים מאתרים פושעים דיגיטליים.",
     keyTopics:["Dark Web — מה קורה שם?","כיצד FBI עוקב אחרי כתובות IP","מקרה Silk Road","פשעי זהות — כיצד לזהות?"],
     videos:[
-      {title:"Silk Road: The Untold Story",url:"https://www.youtube.com/watch?v=kyija0bPeIY",duration:"40 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"How the FBI Catches Hackers",url:"https://www.youtube.com/watch?v=jCPj05FSY84",duration:"22 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"Dark Web Explained",url:"https://www.youtube.com/watch?v=L33RP5gbxgY",duration:"16 דק׳",lang:"🇺🇸 אנגלית"}
+      {title:"Silk Road: The Untold Story",url:"https://www.youtube.com/watch?v=kyija0bPeIY",duration:"40 דק׳",lang:"🇺🇸 אנגלית",summary:"הסיפור המלא של Silk Road — השוק השחור האינטרנטי שמכר סמים ועוד. מי הקים אותו, כיצד פעל בסתר שנים, ואיך ה-FBI הצליח לפרק אותו ולעצור את מייסדו בספרייה ציבורית."},
+      {title:"How the FBI Catches Hackers",url:"https://www.youtube.com/watch?v=jCPj05FSY84",duration:"22 דק׳",lang:"🇺🇸 אנגלית",summary:"ראיון עם סוכנת FBI לשעבר שמסבירה כיצד הארגון עוקב אחרי האקרים ופושעי סייבר. שיטות מעקב דיגיטלי, טעויות שחשפו פושעים וסיפורים מחקירות אמיתיות."},
+      {title:"Dark Web Explained",url:"https://www.youtube.com/watch?v=L33RP5gbxgY",duration:"16 דק׳",lang:"🇺🇸 אנגלית",summary:"מה זה הדארק ווב? הסרטון מסביר בשפה פשוטה כיצד עובד האינטרנט הסמוי, מה נמכר ונקנה שם, ומדוע ה-FBI מתקשה לאכוף חוק בתוך רשת האנונימיות."}
     ],
     caseStudy:"מקרה: Ross Ulbricht — איך מייסד Silk Road נתפס בספרייה הציבורית?"
   },
@@ -218,9 +225,9 @@ var lessons = [
     description:"ישראל אינה חסינה. פרשת רצח דנה בנט, פרשות הונאת נדל״ן ענקיות, ותיקים של אלימות בין-פמילית. שיעור על מה שקורה בחדרי חקירה ישראלים.",
     keyTopics:["מערכת המשפט הפלילית בישראל","חקירות של מחלקת הרצח","פרשות מפורסמות מהעשורים האחרונים","תפקיד התקשורת בחשיפת פשע"],
     videos:[
-      {title:"פרשת דנה בנט — דוקומנטרי חקירה ישראלי",url:"https://www.youtube.com/watch?v=BqYnOETPS_w",duration:"50 דק׳",lang:"🇮🇱 עברית"},
-      {title:"10 פשעים מטלטלים מישראל",url:"https://www.youtube.com/watch?v=tqe_rFpxOAk",duration:"30 דק׳",lang:"🇺🇸 אנגלית"},
-      {title:"חקירת רצח — ראיון עם קצין מחלקת רצח",url:"https://www.youtube.com/watch?v=D8HiUixi_C8",duration:"25 דק׳",lang:"🇮🇱 עברית"}
+      {title:"פרשת דנה בנט — דוקומנטרי חקירה ישראלי",url:"https://www.youtube.com/watch?v=BqYnOETPS_w",duration:"50 דק׳",lang:"🇮🇱 עברית",summary:"תחקיר עברי מעמיק על פרשת הרצח של דנה בנט ז״ל — סיפור מטלטל על נעלמות, חשדות ותהיות שנמשכו שנים. חושף פרטים שלא פורסמו לציבור הרחב."},
+      {title:"פענוח רצח דנה בנט — ערוץ 10",url:"https://www.youtube.com/watch?v=tqe_rFpxOAk",duration:"30 דק׳",lang:"🇮🇱 עברית",summary:"כתבה מערוץ 10 על פריצת הדרך בחקירת רצח דנה בנט — עדות שנמסרה שש שנים מאוחר יותר שהובילה לגילוי גופתה ולסגירת אחד התיקים הקשים בישראל."},
+      {title:"חקירת רצח — ראיון עם קצין מחלקת רצח",url:"https://www.youtube.com/watch?v=D8HiUixi_C8",duration:"25 דק׳",lang:"🇮🇱 עברית",summary:"ראיון עם קצין משטרה ישראלי על חקירת רצח — כיצד עובדים חוקרי מחלקת הרצח, אילו שיטות חקירה משמשים, ומה קורה מאחורי הקלעים של תיק פלילי בישראל."}
     ],
     caseStudy:"מקרה: איך נסגרים תיקים קרים — חקירות DNA שפתרו פשעים לאחר 20 שנה."
   }
@@ -276,21 +283,21 @@ function showLesson(i) {
       topicsHtml +
     '</div>';
 
-  var vidsHtml = '<div class="vid-hint">💡 לחצו על הכותרת לצפייה ב-YouTube</div>';
+  var vidsHtml = '<div class="vid-hint">📺 הסרטונים מוצגים כאן ישירות — כתוביות בעברית מופעלות אוטומטית כאשר זמינות</div>';
   for (var v = 0; v < l.videos.length; v++) {
     var vid = l.videos[v];
-    vidsHtml += '<a class="vid-card" href="' + vid.url + '" target="_blank">' +
-      '<div class="vid-inner">' +
-        '<div class="vid-icon" style="background:' + l.color + '22;border:1px solid ' + l.color + '44">▶</div>' +
-        '<div class="vid-info">' +
-          '<div class="vid-title">' + vid.title + '</div>' +
-          '<div class="vid-meta"><span>⏱ ' + vid.duration + '</span><span>' + vid.lang + '</span></div>' +
+    var ytId = vid.url.split('v=')[1];
+    var embedUrl = 'https://www.youtube.com/embed/' + ytId + '?cc_load_policy=1&cc_lang_pref=iw&hl=iw&rel=0&modestbranding=1';
+    vidsHtml +=
+      '<div class="vid-embed-card">' +
+        '<div class="vid-embed-header">' +
+          '<div class="vid-embed-title">' + vid.title + '</div>' +
+          '<div class="vid-embed-meta"><span>⏱ ' + vid.duration + '</span><span>' + vid.lang + '</span></div>' +
         '</div>' +
-        '<div class="vid-arrow" style="color:' + l.color + '">↗</div>' +
-      '</div>' +
-    '</a>';
+        '<iframe class="vid-iframe" src="' + embedUrl + '" allowfullscreen loading="lazy" title="' + vid.title + '"></iframe>' +
+        '<div class="vid-summary">' + vid.summary + '</div>' +
+      '</div>';
   }
-  vidsHtml += '<div class="sub-tip">🌐 כתוביות עברית ב-YouTube: ⚙️ ← Subtitles/CC ← Auto-translate ← Hebrew</div>';
   document.getElementById('tabVideos').innerHTML = vidsHtml;
 
   document.getElementById('tabCase').innerHTML =
